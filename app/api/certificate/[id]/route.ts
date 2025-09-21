@@ -2,10 +2,16 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb/mongoose';
 import { BookDonation, FoodDonation, ClothesDonation } from '@/lib/mongodb/models';
 import { Types } from 'mongoose';
+import type { NextRequest } from 'next/server';
+
+// Define Next.js route context type
+type RouteContext = {
+  params: { id: string }
+};
 
 export async function GET(
-  request: Request,
-  context: { params: { id: string } }
+  request: NextRequest,
+  context: RouteContext
 ) {
   try {
     await dbConnect();
