@@ -1,9 +1,7 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import dbConnect from '@/lib/mongodb/mongoose';
 import { BookDonation, FoodDonation, ClothesDonation } from '@/lib/mongodb/models';
 import { Types } from 'mongoose';
-
-import type { NextRequest } from 'next/server';
 
 export async function GET(
   request: NextRequest,
@@ -33,7 +31,7 @@ export async function GET(
     });
 
     const donation = bookDonation || foodDonation || clothesDonation;
-    
+
     if (!donation) {
       return NextResponse.json(
         { success: false, message: 'Donation not found' },
@@ -52,8 +50,8 @@ export async function GET(
   } catch (error) {
     console.error('Error fetching certificate:', error);
     return NextResponse.json(
-      { 
-        success: false, 
+      {
+        success: false,
         message: 'Error fetching certificate',
         error: error instanceof Error ? error.message : 'Unknown error'
       },
