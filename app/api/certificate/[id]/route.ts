@@ -3,19 +3,15 @@ import dbConnect from '@/lib/mongodb/mongoose';
 import { BookDonation, FoodDonation, ClothesDonation } from '@/lib/mongodb/models';
 import { Types } from 'mongoose';
 
-// The correct way to type the context for dynamic route handlers
-interface RouteContext {
-  params: { id: string };
-}
-
+// ✅ Correct typing for Next.js route handler
 export async function GET(
   request: Request,
-  { params }: RouteContext
+  context: { params: { id: string } }
 ) {
   try {
     await dbConnect();
 
-    const { id } = params;
+    const { id } = context.params;
 
     // Validate ID format
     if (!Types.ObjectId.isValid(id)) {
