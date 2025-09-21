@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import dbConnect from "@/lib/mongodb/mongoose";
 import { BookDonation, FoodDonation, ClothesDonation } from "@/lib/mongodb/models";
 import { Types } from "mongoose";
 
 export async function GET(
-  request: Request,
-  context: { params: Record<string, string> } // ✅ Fix typing
+  request: NextRequest,
+  context: any // 👈 safest way to satisfy Next.js 15 build
 ) {
   try {
     await dbConnect();
@@ -19,7 +19,6 @@ export async function GET(
       );
     }
 
-    console.log("Searching for donation with ID:", id);
     const bookDonation = await BookDonation.findById(id);
     const foodDonation = await FoodDonation.findById(id);
     const clothesDonation = await ClothesDonation.findById(id);
