@@ -3,9 +3,14 @@ import dbConnect from '@/lib/mongodb/mongoose';
 import { BookDonation, FoodDonation, ClothesDonation } from '@/lib/mongodb/models';
 import { Types } from 'mongoose';
 
+// The correct way to type the context for dynamic route handlers
+interface RouteContext {
+  params: { id: string };
+}
+
 export async function GET(
   request: Request,
-  { params }: { params: { id: string }}
+  { params }: RouteContext
 ) {
   try {
     await dbConnect();
