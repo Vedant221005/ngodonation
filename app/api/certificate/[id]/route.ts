@@ -1,13 +1,11 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb/mongoose';
 import { BookDonation, FoodDonation, ClothesDonation } from '@/lib/mongodb/models';
 import { Types } from 'mongoose';
 
-type Params = { id: string };
-
 export async function GET(
-  request: NextRequest,
-  { params }: { params: Params }
+  request: Request,
+  { params }: { params: { id: string } }
 ) {
   try {
     await dbConnect();
