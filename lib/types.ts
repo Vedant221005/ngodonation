@@ -1,7 +1,7 @@
 export interface BaseDonationData {
   fullName: string;
   contactNumber: string;
-  donationDate: string;
+  donationDate: Date;
   deliveryMethod: 'pickup' | 'dropoff';
   address?: string;
   additionalNotes?: string;

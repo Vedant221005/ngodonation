@@ -4,16 +4,19 @@ import { BookDonation, FoodDonation, ClothesDonation } from "@/lib/mongodb/model
 import { Types } from "mongoose";
 
 export async function GET(
-  _request: Request,
-  { params }: { params: { id: string } }
+  request: Request,
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await dbConnect();
 
-    const { id } = params;
+    const { id } = await context.params; // Add await here
 
     if (!Types.ObjectId.isValid(id)) {
-      return NextResponse.json({ success: false, message: "Invalid donation ID" }, { status: 400 });
+      return NextResponse.json(
+        { success: false, message: "Invalid donation ID" },
+        { status: 400 }
+      );
     }
 
     const bookDonation = await BookDonation.findById(id);
@@ -23,7 +26,10 @@ export async function GET(
     const donation = bookDonation || foodDonation || clothesDonation;
 
     if (!donation) {
-      return NextResponse.json({ success: false, message: "Donation not found" }, { status: 404 });
+      return NextResponse.json(
+        { success: false, message: "Donation not found" },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json({
@@ -42,7 +48,7 @@ export async function GET(
         message: "Error fetching certificate",
         error: error instanceof Error ? error.message : "Unknown error",
       },
-      { status: 500 }
-    );
-  }
+      { status: 500 }
+    );
+  }
 }
