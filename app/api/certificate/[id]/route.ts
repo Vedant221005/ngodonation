@@ -5,13 +5,15 @@ import { Types } from 'mongoose';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     await dbConnect();
 
+    const { id } = context.params;
+
     // Validate ID format
-    if (!Types.ObjectId.isValid(params.id)) {
+    if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
         { success: false, message: 'Invalid donation ID' },
         { status: 400 }
@@ -19,10 +21,10 @@ export async function GET(
     }
 
     // Try to find the donation in each collection
-    console.log('Searching for donation with ID:', params.id);
-    const bookDonation = await BookDonation.findById(params.id);
-    const foodDonation = await FoodDonation.findById(params.id);
-    const clothesDonation = await ClothesDonation.findById(params.id);
+    console.log('Searching for donation with ID:', id);
+    const bookDonation = await BookDonation.findById(id);
+    const foodDonation = await FoodDonation.findById(id);
+    const clothesDonation = await ClothesDonation.findById(id);
 
     console.log('Search results:', {
       bookDonation: bookDonation ? 'found' : 'not found',
