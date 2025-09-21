@@ -2,21 +2,15 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb/mongoose';
 import { BookDonation, FoodDonation, ClothesDonation } from '@/lib/mongodb/models';
 import { Types } from 'mongoose';
-import type { NextRequest } from 'next/server';
-
-// Define Next.js route context type
-type RouteContext = {
-  params: { id: string }
-};
 
 export async function GET(
-  request: NextRequest,
-  context: RouteContext
+  request: Request,
+  { params }: { params: { id: string }}
 ) {
   try {
     await dbConnect();
 
-    const { id } = context.params;
+    const { id } = params;
 
     // Validate ID format
     if (!Types.ObjectId.isValid(id)) {
