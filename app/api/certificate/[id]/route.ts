@@ -1,22 +1,19 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb/mongoose";
 import { BookDonation, FoodDonation, ClothesDonation } from "@/lib/mongodb/models";
 import { Types } from "mongoose";
 
 export async function GET(
-  request: NextRequest,
-  context: any // 👈 safest way to satisfy Next.js 15 build
+  _request: Request,
+  { params }: { params: { id: string } }
 ) {
   try {
     await dbConnect();
 
-    const { id } = context.params;
+    const { id } = params;
 
     if (!Types.ObjectId.isValid(id)) {
-      return NextResponse.json(
-        { success: false, message: "Invalid donation ID" },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, message: "Invalid donation ID" }, { status: 400 });
     }
 
     const bookDonation = await BookDonation.findById(id);
@@ -26,10 +23,7 @@ export async function GET(
     const donation = bookDonation || foodDonation || clothesDonation;
 
     if (!donation) {
-      return NextResponse.json(
-        { success: false, message: "Donation not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ success: false, message: "Donation not found" }, { status: 404 });
     }
 
     return NextResponse.json({
