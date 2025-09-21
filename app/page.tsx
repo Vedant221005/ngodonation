@@ -4,6 +4,43 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+
+interface CounterProps {
+  end: number;
+  duration?: number;
+}
+
+const Counter = ({ end, duration = 2000 }: CounterProps) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = (currentTime - startTime) / duration;
+
+      if (progress < 1) {
+        setCount(Math.floor(end * progress));
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        setCount(end);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [end, duration]);
+
+  return <>{count.toLocaleString()}+</>;
+};
 
 export default function Home() {
   return (
@@ -20,31 +57,41 @@ export default function Home() {
             Join our mission to provide food, clothes, and books to those in need. Every donation creates ripples of hope in our community.
           </p>
           <div className="flex gap-4">
-            <Button
-              size="lg"
-              className="bg-red-600 hover:bg-red-700 text-white px-8"
-            >
-              Donate Now
-            </Button>
-            <Button
-              size="lg"
-              variant="secondary"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-8"
-            >
-              Learn More
-            </Button>
+            <Link href="/donate">
+              <Button
+                size="lg"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 cursor-pointer"
+              >
+                Donate Now
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-8 cursor-pointer"
+              >
+                Learn More
+              </Button>
+            </Link>
           </div>
           <div className="flex justify-between mt-16 max-w-xl">
             <div>
-              <p className="text-2xl font-bold text-red-600 text-center">5,000+</p>
+              <p className="text-2xl font-bold text-red-600 text-center">
+                <Counter end={5000} />
+              </p>
               <p className="text-sm font-bold">Families helped</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-red-600 text-center">15,000+</p>
+              <p className="text-2xl font-bold text-red-600 text-center">
+                <Counter end={15000} />
+              </p>
               <p className="text-sm font-bold">Meals provided</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-red-600 text-center">2,500+</p>
+              <p className="text-2xl font-bold text-red-600 text-center">
+                <Counter end={2500} />
+              </p>
               <p className="text-sm font-bold">Books Donated</p>
             </div>
           </div>

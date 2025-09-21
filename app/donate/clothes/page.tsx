@@ -41,9 +41,18 @@ export default function ClothesDonationPage() {
       if (!response.ok) {
         throw new Error("Failed to submit donation");
       }
-
-      alert("Clothes donation submitted successfully!");
-      router.push("/donate"); // Redirect to donation categories page
+      
+      const result = await response.json();
+      if (result.success && result.donationId) {
+        const params = new URLSearchParams({
+          fullName: data.fullName as string,
+          method: data.deliveryMethod as string,
+          ...(data.address && { address: data.address as string })
+        });
+        router.push(`/certificate?id=${result.donationId}&${params.toString()}`);
+      } else {
+        throw new Error("Failed to get donation ID");
+      }
     } catch (err) {
       setError("Failed to submit donation. Please try again.");
       console.error(err);

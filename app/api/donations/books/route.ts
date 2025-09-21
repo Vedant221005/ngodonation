@@ -13,7 +13,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ 
       success: true, 
       message: 'Book donation submitted successfully',
-      donation 
+      donation,
+      donationId: donation._id 
     });
   } catch (error) {
     return NextResponse.json(

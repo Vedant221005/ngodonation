@@ -126,6 +126,7 @@ const bookDonationSchema = new mongoose.Schema({
   },
 });
 
-export const FoodDonation = mongoose.models.FoodDonation || mongoose.model('FoodDonation', foodDonationSchema);
-export const ClothesDonation = mongoose.models.ClothesDonation || mongoose.model('ClothesDonation', clothesDonationSchema);
-export const BookDonation = mongoose.models.BookDonation || mongoose.model('BookDonation', bookDonationSchema);
+// Models are lazy-loaded
+export const FoodDonation = (mongoose.models?.FoodDonation || mongoose.model('FoodDonation', foodDonationSchema)) as mongoose.Model<any>;
+export const ClothesDonation = (mongoose.models?.ClothesDonation || mongoose.model('ClothesDonation', clothesDonationSchema)) as mongoose.Model<any>;
+export const BookDonation = (mongoose.models?.BookDonation || mongoose.model('BookDonation', bookDonationSchema)) as mongoose.Model<any>;
