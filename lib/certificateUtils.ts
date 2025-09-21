@@ -33,7 +33,7 @@ export async function getCertificate(donationId: string): Promise<CertificateDat
     donorName: donation.fullName,
     date: donation.donationDate,
     location: 'Pune, India', // You can make this dynamic if needed
-    donationMethod: donation.donationMethod,
+    donationMethod: donation.donationMethod || 'In-person',
     address: donation.address
   };
 }

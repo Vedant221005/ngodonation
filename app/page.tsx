@@ -139,7 +139,7 @@ export default function Home() {
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
-              <p className="text-gray-600">"This NGO changed lives in our community!"</p>
+              <p className="text-gray-600">&quot;This NGO changed lives in our community!&quot;</p>
             </CardContent>
           </Card>
 
@@ -151,7 +151,7 @@ export default function Home() {
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
-              <p className="text-gray-600">"Very transparent and impactful."</p>
+              <p className="text-gray-600">&quot;Very transparent and impactful.&quot;</p>
             </CardContent>
           </Card>
 
@@ -163,7 +163,7 @@ export default function Home() {
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
-              <p className="text-gray-600">"Happy to donate books for underprivileged kids."</p>
+              <p className="text-gray-600">&quot;Happy to donate books for underprivileged kids.&quot;</p>
             </CardContent>
           </Card>
         </div>

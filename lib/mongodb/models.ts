@@ -126,7 +126,22 @@ const bookDonationSchema = new mongoose.Schema({
   },
 });
 
+// Add virtual fields for backwards compatibility
+foodDonationSchema.virtual('donationMethod').get(function() {
+  return this.deliveryMethod;
+});
+
+clothesDonationSchema.virtual('donationMethod').get(function() {
+  return this.deliveryMethod;
+});
+
+bookDonationSchema.virtual('donationMethod').get(function() {
+  return this.deliveryMethod;
+});
+
 // Models are lazy-loaded
-export const FoodDonation = (mongoose.models?.FoodDonation || mongoose.model('FoodDonation', foodDonationSchema)) as mongoose.Model<any>;
-export const ClothesDonation = (mongoose.models?.ClothesDonation || mongoose.model('ClothesDonation', clothesDonationSchema)) as mongoose.Model<any>;
-export const BookDonation = (mongoose.models?.BookDonation || mongoose.model('BookDonation', bookDonationSchema)) as mongoose.Model<any>;
+import { FoodDonationType, ClothesDonationType, BookDonationType } from './types';
+
+export const FoodDonation = (mongoose.models?.FoodDonation || mongoose.model('FoodDonation', foodDonationSchema)) as mongoose.Model<FoodDonationType>;
+export const ClothesDonation = (mongoose.models?.ClothesDonation || mongoose.model('ClothesDonation', clothesDonationSchema)) as mongoose.Model<ClothesDonationType>;
+export const BookDonation = (mongoose.models?.BookDonation || mongoose.model('BookDonation', bookDonationSchema)) as mongoose.Model<BookDonationType>;

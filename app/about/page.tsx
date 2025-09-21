@@ -128,7 +128,7 @@ export default function AboutUs() {
             <Card 
               key={index} 
               className="relative h-72 overflow-hidden md:cursor-default cursor-pointer group"
-              onClick={(e) => {
+              onClick={() => {
                 // Only handle clicks on mobile devices
                 if (window.innerWidth < 768) {
                   const element = document.getElementById(`ngo-overlay-${index}`);

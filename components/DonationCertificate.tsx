@@ -73,9 +73,11 @@ export default function DonationCertificate({
             {/* Signature */}
             <div className="text-right pr-10">
               <p className="text-xs sm:text-sm md:text-base font-medium pr-2 sm:pr-4">Head of The NGO</p>
-              <img
+              <Image
                 src="/sign.jpg"
                 alt="Signature of Vedant Rane"
+                width={128}
+                height={48}
                 className="h-8 w-24 sm:h-10 sm:w-28 md:h-12 md:w-32 mb-1 ml-auto pr-2 sm:pr-5"
               />
               {/* <div className="h-[1px] sm:h-[2px] w-28 sm:w-36 md:w-40 bg-black mb-1 ml-auto" /> */}

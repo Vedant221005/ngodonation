@@ -18,13 +18,6 @@ export default function ContactPage() {
     try {
       // In a real application, you would send this to your backend
       const formData = new FormData(e.currentTarget);
-      const data = {
-        name: formData.get("name"),
-        email: formData.get("email"),
-        subject: formData.get("subject"),
-        message: formData.get("message"),
-      };
-
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
@@ -48,8 +41,8 @@ export default function ContactPage() {
             Contact <span className="text-red-600">Us</span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have questions or suggestions? We'd love to hear from you. 
-            Send us a message and we'll respond as soon as possible.
+            Have questions or suggestions? We&apos;d love to hear from you. 
+            Send us a message and we&apos;ll respond as soon as possible.
           </p>
         </section>
 

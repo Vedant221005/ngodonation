@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -198,8 +197,8 @@ export default function ClothesDonationPage() {
                     name="additionalNotes"
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
                     rows={3}
-                    placeholder="Any special instructions, sizes, or additional information"
-                  ></textarea>
+                    placeholder="Any special instructions, sizes or additional information">
+                  </textarea>
                 </div>
                 <p className="text-sm text-gray-500">* Required fields</p>
                 <Button 
