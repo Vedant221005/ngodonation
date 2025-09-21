@@ -16,8 +16,6 @@ export default function ContactPage() {
     setErrorMessage("");
 
     try {
-      // In a real application, you would send this to your backend
-      const formData = new FormData(e.currentTarget);
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       

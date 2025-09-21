@@ -1,4 +1,6 @@
-export async function submitDonation(type: 'food' | 'clothes' | 'books', data: any) {
+import { DonationData } from './types';
+
+export async function submitDonation(type: 'food' | 'clothes' | 'books', data: DonationData) {
   try {
     const response = await fetch(`/api/donations/${type}`, {
       method: 'POST',

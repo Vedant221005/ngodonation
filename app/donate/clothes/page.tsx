@@ -112,7 +112,7 @@ export default function ClothesDonationPage() {
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
                   >
                     <option value="">Select clothing type</option>
-                    <option value="children">Children's Wear</option>
+                    <option value="children">Children&apos;s Wear</option>
                     <option value="winter">Winter Clothing</option>
                     <option value="professional">Professional Attire</option>
                     <option value="casual">Casual Wear</option>
