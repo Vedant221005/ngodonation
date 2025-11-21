@@ -101,9 +101,16 @@ export default function BooksDonationPage() {
                     name="contactNumber"
                     type="tel"
                     required
+                    pattern="[0-9]{10}"
+                    maxLength={10}
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
-                    placeholder="Enter your contact number"
+                    placeholder="Enter 10-digit contact number"
+                    onInput={(e) => {
+                      const target = e.target as HTMLInputElement;
+                      target.value = target.value.replace(/[^0-9]/g, '').slice(0, 10);
+                    }}
                   />
+                  <p className="text-xs text-gray-500 mt-1">Must be exactly 10 digits</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Book Name *</label>

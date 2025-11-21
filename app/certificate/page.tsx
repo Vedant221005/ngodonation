@@ -37,10 +37,13 @@ function CertificateContent() {
       {donationMethod === 'dropoff' && (
         <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
           <p className="text-green-800 text-center">
-            <span className="font-semibold">Drop-off Note:</span> Please deliver your donations to:
+            <span className="font-semibold">Drop-off Note:</span> Please deliver your donations to
           </p>
           <p className="text-green-700 text-center mt-2 font-medium">
-            PCCOE&R, Pune
+            A RAY OF HOPE, Pune
+          </p>
+          <p className="text-green-800 text-center mt-2 font-medium">
+            Address - B4 , Safa Complex , Sheikh Wasti, Lane 2 , Below Meridian Icecream Parlour, Wakad , Pune : 411057 , Maharashtra
           </p>
           <p className="text-green-600 text-center mt-1 text-sm">
             Working Hours: Monday to Saturday, 10:00 AM - 5:00 PM

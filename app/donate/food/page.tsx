@@ -100,9 +100,16 @@ export default function FoodDonationPage() {
                     name="contactNumber"
                     type="tel"
                     required
+                    pattern="[0-9]{10}"
+                    maxLength={10}
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
-                    placeholder="Enter your contact number"
+                    placeholder="Enter 10-digit contact number"
+                    onInput={(e) => {
+                      const target = e.target as HTMLInputElement;
+                      target.value = target.value.replace(/[^0-9]/g, '').slice(0, 10);
+                    }}
                   />
+                  <p className="text-xs text-gray-500 mt-1">Must be exactly 10 digits</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Type of Food *</label>
@@ -249,6 +256,18 @@ export default function FoodDonationPage() {
                     <p className="text-2xl font-bold text-red-600">1,000+</p>
                     <p className="text-sm text-gray-600">Families Fed Monthly</p>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-red-100 bg-blue-50">
+              <CardContent className="p-6">
+                <h2 className="text-xl font-semibold mb-3 text-gray-900">Daily Food Supply from Hotels</h2>
+                <p className="text-sm text-gray-700 mb-3">
+                  If you are a hotel or restaurant and would like to provide daily food supply, please contact us:
+                </p>
+                <div className="bg-white p-3 rounded-md border border-gray-200">
+                  <p className="text-base font-semibold ">📞 9876543210</p>
                 </div>
               </CardContent>
             </Card>

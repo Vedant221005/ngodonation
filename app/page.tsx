@@ -230,9 +230,9 @@ export default function Home() {
             />
           </Card>
         </div>
-        <Button variant="outline" className="mt-12 border-red-600 text-red-600 hover:bg-red-50">
+        {/* <Button variant="outline" className="mt-12 border-red-600 text-red-600 hover:bg-red-50">
           View More Photos
-        </Button>
+        </Button> */}
       </section>
     </main>
   );

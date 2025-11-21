@@ -81,7 +81,7 @@ export default function DonationCertificate({
                 className="h-8 w-24 sm:h-10 sm:w-28 md:h-12 md:w-32 mb-1 ml-auto pr-2 sm:pr-5"
               />
               {/* <div className="h-[1px] sm:h-[2px] w-28 sm:w-36 md:w-40 bg-black mb-1 ml-auto" /> */}
-              <p className="text-xs sm:text-sm md:text-base font-semibold text-gray-800 pr-10 sm:pr-8">Vedant Rane</p>
+              <p className="text-xs sm:text-sm md:text-base font-semibold text-gray-800 pr-19 sm:pr-17">XYZ</p>
             </div>
           </div>
         </div>
